@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This network was created in GeNIe Academic, which can be used for academic teaching and research purposes only -->
+<smile version="1.0" id="Network2" numsamples="100000" discsamples="100000">
+	<properties>
+		<property id="DIAG_prefs">267</property>
+	</properties>
+	<nodes>
+		<cpt id="Copy_of_FC01_Lufteinschlüsse_im_Fett" target="true">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<cpt id="Copy_of_FC02_Fettdorn_verharzt_verstopft" target="true">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.0001 0.9999</probabilities>
+		</cpt>
+		<noisymax id="Copy_of_F01_Fetten" target="true">
+			<state id="FM01_Grease_incorrectly_dispensed" />
+			<state id="UNK" />
+			<state id="OK" />
+			<parents>Copy_of_FC01_Lufteinschlüsse_im_Fett Copy_of_FC02_Fettdorn_verharzt_verstopft</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0.9799358631565299 0.0190437287822456 0.001020408061224499 0 0 1 0.9799358631565299 0.0190437287822456 0.001020408061224499 0 0 1 9.999999994736442e-08 9.999999994736442e-08 0.9999998000000001</parameters>
+		</noisymax>
+		<deterministic id="Copy_of_FU01_Prozess_GehausePatronenbohrung_fetten" target="true">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>Copy_of_F01_Fetten</parents>
+			<resultingstates>NOK NOK OK</resultingstates>
+		</deterministic>
+		<deterministic id="SE03_Station01_" target="true">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>Copy_of_FU01_Prozess_GehausePatronenbohrung_fetten</parents>
+			<resultingstates>OK NOK</resultingstates>
+		</deterministic>
+		<cpt id="Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen" target="true" diagtype="target">
+			<state id="True" fault="true" />
+			<state id="False" />
+			<probabilities>0.0004999999999999449 0.9995000000000001</probabilities>
+		</cpt>
+		<cpt id="Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau" target="true" diagtype="target">
+			<state id="True" fault="true" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<noisymax id="Copy_of_F02_Patronen_zuführen" target="true" diagtype="observation" mandatory="true">
+			<state id="FM02_Cartridge_is_damaged" />
+			<state id="UNK" />
+			<state id="OK" default="true" />
+			<parents>Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0.9799999799999801 0.01899991798981489 0.001000102010205021 0 0 1 0.97999997999998 0.018999917989815 0.001000102010205021 0 0 1 9.999999994736442e-08 9.999999994736442e-08 0.9999998000000001</parameters>
+		</noisymax>
+		<cpt id="Copy_of_FC05_Einpresskraft_zu_gering" target="true">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-06 0.999999</probabilities>
+		</cpt>
+		<cpt id="Copy_of_FC06_Orientierung_der_Patrone_falsch" target="true">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<cpt id="Copy_of_FC08_Einstellparameter_der_Presse_falsch" target="true">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<cpt id="Copy_of_FE03_FC07_Patronenbohrung_nicht_komplett_vollflaechig_befettet" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_F01_Fetten</parents>
+			<probabilities>1 0 0.2 0.8 0.002 0.998</probabilities>
+		</cpt>
+		<noisymax id="Copy_of_F03_Patronen_in_Position_bringen" target="true">
+			<state id="FM03_Not_pressed_in_position" />
+			<state id="FM04_Surface_of_cartridge_bore_damaged" />
+			<state id="UNK" />
+			<state id="OK" />
+			<parents>Copy_of_FC05_Einpresskraft_zu_gering Copy_of_FC06_Orientierung_der_Patrone_falsch Copy_of_FC08_Einstellparameter_der_Presse_falsch Copy_of_FE03_FC07_Patronenbohrung_nicht_komplett_vollflaechig_befettet Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen</parents>
+			<strengths>0 1 0 1 0 1 0 1 0 1</strengths>
+			<parameters>0.98 0 0.01897959183673469 0.001020408163265325 0 0 0 1 0.98 0 0.01897959183673469 0.001020408163265325 0 0 0 1 0 0.98 0.01897959183673469 0.001020408163265325 0 0 0 1 0 0.98 0.01897959183673469 0.001020408163265325 0 0 0 1 0.518824 0.4611760000000001 0.01897959183673469 0.001020408163265268 0 0 0 1 9.999999994736442e-08 9.999999994736442e-08 9.999999994736442e-08 0.9999997000000002</parameters>
+		</noisymax>
+		<deterministic id="Copy_of_FU02_Prozess_Patronen_einpressen" target="true">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>Copy_of_F02_Patronen_zuführen Copy_of_F03_Patronen_in_Position_bringen</parents>
+			<resultingstates>NOK NOK NOK NOK NOK NOK NOK NOK NOK NOK NOK OK</resultingstates>
+		</deterministic>
+		<deterministic id="Copy_of_SE04_Station02" target="true">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>Copy_of_FU02_Prozess_Patronen_einpressen</parents>
+			<resultingstates>OK NOK</resultingstates>
+		</deterministic>
+		<deterministic id="SE02_Cell02" target="true">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>SE03_Station01_ Copy_of_SE04_Station02</parents>
+			<resultingstates>OK NOK NOK NOK</resultingstates>
+		</deterministic>
+		<deterministic id="SE01_Valvle_assembly_line" target="true">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>SE02_Cell02</parents>
+			<resultingstates>OK NOK</resultingstates>
+		</deterministic>
+		<noisymax id="Copy_of_FE07_Funktionsausfall_Ventil_kein_Schalten_von_Luft" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_F03_Patronen_in_Position_bringen</parents>
+			<strengths>0 1 2 3</strengths>
+			<parameters>0.88889 0.11111 1 0 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="Copy_of_FE01_Ventilschaltzeiten_nicht_erreicht" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_F01_Fetten</parents>
+			<strengths>0 1 2</strengths>
+			<parameters>0.71428571 0.28571429 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="Copy_of_FE02_Erhoehte_Kraefte_beim_Patroneneinpressen" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_F01_Fetten</parents>
+			<strengths>0 1 2</strengths>
+			<parameters>0.71428571 0.28571429 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="Copy_of_FE05_Steuerkopf_wird_unter_Druck_gesetzt" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_F03_Patronen_in_Position_bringen Copy_of_F02_Patronen_zuführen</parents>
+			<strengths>0 1 2 3 0 1 2</strengths>
+			<parameters>0.5555600000000001 0.4444399999999999 0 1 0.2 0.8 0 1 0.5555600000000001 0.4444399999999999 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="Copy_of_FE04_Innere_Leckage" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_F02_Patronen_zuführen</parents>
+			<strengths>0 1 2</strengths>
+			<parameters>0.77778 0.22222 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="Copy_of_FE06_Steuerkopf_wird_nicht_gesteuert" target="true" diagtype="observation">
+			<state id="True" />
+			<state id="False" default="true" />
+			<parents>Copy_of_F02_Patronen_zuführen Copy_of_F03_Patronen_in_Position_bringen</parents>
+			<strengths>0 1 2 0 1 2 3</strengths>
+			<parameters>1 0 0.2 0.8 0 1 1 0 0 1 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<cpt id="Copy_of_CM02_Fettdorne_reinigen" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FC02_Fettdorn_verharzt_verstopft</parents>
+			<probabilities>0.95 0.05000000000000004 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="Copy_of_CM01_Fett_wechseln" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FC01_Lufteinschlüsse_im_Fett</parents>
+			<probabilities>0.95 0.05000000000000004 0.02000000000000002 0.98</probabilities>
+		</cpt>
+		<cpt id="Copy_of_CM06_Achsen_prüfen_und_einstellen" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen</parents>
+			<probabilities>0.95 0.05000000000000004 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="Copy_of_CM03_Fettdorn_ersetzen" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FC02_Fettdorn_verharzt_verstopft</parents>
+			<probabilities>0.95 0.05000000000000004 0.02 0.9800000000000001</probabilities>
+		</cpt>
+		<cpt id="Copy_of_CM04_Orientierung_Fallschacht_justieren" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau Copy_of_FC06_Orientierung_der_Patrone_falsch</parents>
+			<probabilities>0.95 0.05000000000000004 0.95 0.05000000000000004 0.95 0.05000000000000004 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="Copy_of_CM05_Spiel_der_Patronenfuehrung_korrigieren" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau Copy_of_FC06_Orientierung_der_Patrone_falsch</parents>
+			<probabilities>0.95 0.05000000000000004 0.95 0.05000000000000004 0.95 0.05000000000000004 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="Copy_of_CM07_Einpressparameter_prüfen_und_justieren" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FC05_Einpresskraft_zu_gering Copy_of_FC08_Einstellparameter_der_Presse_falsch</parents>
+			<probabilities>0.95 0.05000000000000004 0.95 0.05000000000000004 0.95 0.05000000000000004 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="Copy_of_CM08_Prozess_Fetten_prüfen_und_reparieren" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>Copy_of_FE03_FC07_Patronenbohrung_nicht_komplett_vollflaechig_befettet</parents>
+			<probabilities>0.95 0.05000000000000004 0.02 0.98</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 3.0.6518.0 ACADEMIC" name="Network2">
+			<node id="SE01_Valvle_assembly_line">
+				<name>SE01_Valvle_assembly_line</name>
+				<interior color="8d8d8d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2328 771 2376 801</position>
+				<barchart active="true" width="136" height="54" />
+			</node>
+			<node id="SE03_Station01_">
+				<name>SE03_Station01</name>
+				<interior color="8d8d8d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2179 677 2227 707</position>
+				<barchart active="true" width="105" height="54" />
+			</node>
+			<node id="Copy_of_SE04_Station02">
+				<name>SE04_Station02</name>
+				<interior color="8d8d8d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2470 677 2518 707</position>
+				<barchart active="true" width="109" height="54" />
+			</node>
+			<node id="Copy_of_F01_Fetten">
+				<name>F01_Greasing</name>
+				<interior color="99ccff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2028 448 2076 478</position>
+				<barchart active="true" width="178" height="72" />
+			</node>
+			<node id="Copy_of_F02_Patronen_zuführen">
+				<name>F02_Feeding_cartridges</name>
+				<interior color="99ccff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2693 448 2741 478</position>
+				<barchart active="true" width="151" height="72" />
+			</node>
+			<node id="Copy_of_F03_Patronen_in_Position_bringen">
+				<name>F03_Positioning_cartridges</name>
+				<interior color="99ccff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2432 446 2480 476</position>
+				<barchart active="true" width="188" height="90" />
+			</node>
+			<node id="Copy_of_FE07_Funktionsausfall_Ventil_kein_Schalten_von_Luft">
+				<name>FE07_Failure_valve_no_switching_of_air</name>
+				<interior color="fbe340" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2413 544 2461 574</position>
+				<barchart active="true" width="129" height="54" />
+			</node>
+			<node id="Copy_of_FE01_Ventilschaltzeiten_nicht_erreicht">
+				<name>FE01_Valve_switching_times_not_reached</name>
+				<interior color="fbe340" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1953 544 2001 574</position>
+				<barchart active="true" width="132" height="54" />
+			</node>
+			<node id="Copy_of_FE02_Erhoehte_Kraefte_beim_Patroneneinpressen">
+				<name>FE02_Increased_forces_pressing_in_cartridges</name>
+				<interior color="fbe340" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2109 544 2157 574</position>
+				<barchart active="true" width="133" height="54" />
+			</node>
+			<node id="Copy_of_FE03_FC07_Patronenbohrung_nicht_komplett_vollflaechig_befettet">
+				<name>FE03_FC07_Cartridge_bore_not_completely_greased</name>
+				<interior color="fbe340" />
+				<outline color="ff8040" width="4" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2263 544 2311 574</position>
+				<barchart active="true" width="139" height="54" />
+			</node>
+			<node id="Copy_of_FE05_Steuerkopf_wird_unter_Druck_gesetzt">
+				<name>FE05_Control_head_is_pressurised</name>
+				<interior color="fbe340" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2554 544 2602 574</position>
+				<barchart active="true" width="123" height="54" />
+			</node>
+			<node id="Copy_of_FE04_Innere_Leckage">
+				<name>FE04_Internal_leakage</name>
+				<interior color="fbe340" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2823 544 2871 574</position>
+				<barchart active="true" width="109" height="54" />
+			</node>
+			<node id="Copy_of_FE06_Steuerkopf_wird_nicht_gesteuert">
+				<name>FE06_Control_head_not_controlled</name>
+				<interior color="fbe340" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2695 544 2743 574</position>
+				<barchart active="true" width="116" height="54" />
+			</node>
+			<node id="Copy_of_FC02_Fettdorn_verharzt_verstopft">
+				<name>FC02_Grease_plugs_clogged</name>
+				<interior color="ff8040" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2102 352 2150 382</position>
+				<barchart active="true" width="126" height="54" />
+			</node>
+			<node id="Copy_of_FC01_Lufteinschlüsse_im_Fett">
+				<name>FC01_Air_inclusions_in_the_grease</name>
+				<interior color="ff8040" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1951 352 1999 382</position>
+				<barchart active="true" width="120" height="54" />
+			</node>
+			<node id="Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau">
+				<name>FC03_Position_of_the_cartridge_on_the_pressing_in_plug_imprecise</name>
+				<interior color="ff8040" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2779 352 2827 382</position>
+				<barchart active="true" width="120" height="54" />
+			</node>
+			<node id="Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen">
+				<name>FC04_Insufficient_accuracy_of_the_axes</name>
+				<interior color="ff8040" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2646 352 2694 382</position>
+				<barchart active="true" width="115" height="54" />
+			</node>
+			<node id="Copy_of_FC05_Einpresskraft_zu_gering">
+				<name>FC05_Press-in_force_too_low</name>
+				<interior color="ff8040" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2267 352 2315 382</position>
+				<barchart active="true" width="108" height="54" />
+			</node>
+			<node id="Copy_of_FC06_Orientierung_der_Patrone_falsch">
+				<name>FC06_Incorrect_orientation_of_the_cartridge</name>
+				<interior color="ff8040" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2390 352 2438 382</position>
+				<barchart active="true" width="110" height="54" />
+			</node>
+			<node id="Copy_of_FC08_Einstellparameter_der_Presse_falsch">
+				<name>FC08_Incorrect_press_settings</name>
+				<interior color="ff8040" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2513 352 2561 382</position>
+				<barchart active="true" width="109" height="54" />
+			</node>
+			<node id="Copy_of_CM02_Fettdorne_reinigen">
+				<name>CM02_Clean_grease_plugs</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2062 277 2110 307</position>
+				<barchart active="true" width="108" height="54" />
+			</node>
+			<node id="Copy_of_CM01_Fett_wechseln">
+				<name>CM01_Change_grease</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1926 277 1974 307</position>
+				<barchart active="true" width="117" height="54" />
+			</node>
+			<node id="Copy_of_CM06_Achsen_prüfen_und_einstellen">
+				<name>CM06_Check_and_adjust_axes</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2634 277 2682 307</position>
+				<barchart active="true" width="125" height="54" />
+			</node>
+			<node id="SE02_Cell02">
+				<name>SE02_Cell02</name>
+				<interior color="8d8d8d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2325 695 2373 725</position>
+				<barchart active="true" width="100" height="54" />
+			</node>
+			<node id="Copy_of_FU01_Prozess_GehausePatronenbohrung_fetten">
+				<name>FU01_Process_grease_housing_cartridge_bore</name>
+				<interior color="e8e8e8" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2034 615 2082 645</position>
+				<barchart active="true" width="149" height="54" />
+			</node>
+			<node id="Copy_of_FU02_Prozess_Patronen_einpressen">
+				<name>FU02_Process_press_in_cartridges</name>
+				<interior color="e8e8e8" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2621 615 2669 645</position>
+				<barchart active="true" width="132" height="54" />
+			</node>
+			<node id="Copy_of_CM03_Fettdorn_ersetzen">
+				<name>CM03_Replace_grease_plug</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2183 277 2231 307</position>
+				<barchart active="true" width="112" height="54" />
+			</node>
+			<node id="Copy_of_CM04_Orientierung_Fallschacht_justieren">
+				<name>CM04_Adjust_orientation_drop_shaft</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2486 277 2534 307</position>
+				<barchart active="true" width="112" height="54" />
+			</node>
+			<node id="Copy_of_CM05_Spiel_der_Patronenfuehrung_korrigieren">
+				<name>CM05_Correct_backlash_cartridge_feeder</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2774 277 2822 307</position>
+				<barchart active="true" width="113" height="54" />
+			</node>
+			<node id="Copy_of_CM07_Einpressparameter_prüfen_und_justieren">
+				<name>CM07_Check_and_adapt_settings</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2334 277 2382 307</position>
+				<barchart active="true" width="117" height="54" />
+			</node>
+			<node id="Copy_of_CM08_Prozess_Fetten_prüfen_und_reparieren">
+				<name>CM08_Check_and_repair_greasing_process</name>
+				<interior color="7dff7d" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>2324 617 2372 647</position>
+				<barchart active="true" width="141" height="54" />
+			</node>
+			<arcformat parent="Copy_of_FC01_Lufteinschlüsse_im_Fett" child="Copy_of_F01_Fetten" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_FC02_Fettdorn_verharzt_verstopft" child="Copy_of_F01_Fetten" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_F01_Fetten" child="Copy_of_FU01_Prozess_GehausePatronenbohrung_fetten" width="2" color="8d8d8d" />
+			<arcformat parent="Copy_of_FU01_Prozess_GehausePatronenbohrung_fetten" child="SE03_Station01_" width="2" color="8d8d8d" />
+			<arcformat parent="Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen" child="Copy_of_F02_Patronen_zuführen" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau" child="Copy_of_F02_Patronen_zuführen" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_F01_Fetten" child="Copy_of_FE03_FC07_Patronenbohrung_nicht_komplett_vollflaechig_befettet" width="2" color="000000" />
+			<arcformat parent="Copy_of_FC05_Einpresskraft_zu_gering" child="Copy_of_F03_Patronen_in_Position_bringen" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_FC06_Orientierung_der_Patrone_falsch" child="Copy_of_F03_Patronen_in_Position_bringen" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_FC08_Einstellparameter_der_Presse_falsch" child="Copy_of_F03_Patronen_in_Position_bringen" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_FE03_FC07_Patronenbohrung_nicht_komplett_vollflaechig_befettet" child="Copy_of_F03_Patronen_in_Position_bringen" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen" child="Copy_of_F03_Patronen_in_Position_bringen" width="2" color="ff8040" />
+			<arcformat parent="Copy_of_F02_Patronen_zuführen" child="Copy_of_FU02_Prozess_Patronen_einpressen" width="2" color="8d8d8d" />
+			<arcformat parent="Copy_of_F03_Patronen_in_Position_bringen" child="Copy_of_FU02_Prozess_Patronen_einpressen" width="2" color="8d8d8d" />
+			<arcformat parent="Copy_of_FU02_Prozess_Patronen_einpressen" child="Copy_of_SE04_Station02" width="2" color="8d8d8d" />
+			<arcformat parent="SE03_Station01_" child="SE02_Cell02" width="2" color="8d8d8d" />
+			<arcformat parent="Copy_of_SE04_Station02" child="SE02_Cell02" width="2" color="8d8d8d" />
+			<arcformat parent="SE02_Cell02" child="SE01_Valvle_assembly_line" width="2" color="8d8d8d" />
+			<arcformat parent="Copy_of_F03_Patronen_in_Position_bringen" child="Copy_of_FE07_Funktionsausfall_Ventil_kein_Schalten_von_Luft" width="2" color="000000" />
+			<arcformat parent="Copy_of_F01_Fetten" child="Copy_of_FE01_Ventilschaltzeiten_nicht_erreicht" width="2" color="000000" />
+			<arcformat parent="Copy_of_F01_Fetten" child="Copy_of_FE02_Erhoehte_Kraefte_beim_Patroneneinpressen" width="2" color="000000" />
+			<arcformat parent="Copy_of_F03_Patronen_in_Position_bringen" child="Copy_of_FE05_Steuerkopf_wird_unter_Druck_gesetzt" width="2" color="000000" />
+			<arcformat parent="Copy_of_F02_Patronen_zuführen" child="Copy_of_FE05_Steuerkopf_wird_unter_Druck_gesetzt" width="2" color="000000" />
+			<arcformat parent="Copy_of_F02_Patronen_zuführen" child="Copy_of_FE04_Innere_Leckage" width="2" color="000000" />
+			<arcformat parent="Copy_of_F02_Patronen_zuführen" child="Copy_of_FE06_Steuerkopf_wird_nicht_gesteuert" width="2" color="000000" />
+			<arcformat parent="Copy_of_F03_Patronen_in_Position_bringen" child="Copy_of_FE06_Steuerkopf_wird_nicht_gesteuert" width="2" color="000000" />
+			<arcformat parent="Copy_of_FC02_Fettdorn_verharzt_verstopft" child="Copy_of_CM02_Fettdorne_reinigen" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC01_Lufteinschlüsse_im_Fett" child="Copy_of_CM01_Fett_wechseln" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC04_Nicht_ausreichende_Genauigkeit_der_Achsen" child="Copy_of_CM06_Achsen_prüfen_und_einstellen" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC02_Fettdorn_verharzt_verstopft" child="Copy_of_CM03_Fettdorn_ersetzen" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau" child="Copy_of_CM04_Orientierung_Fallschacht_justieren" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC06_Orientierung_der_Patrone_falsch" child="Copy_of_CM04_Orientierung_Fallschacht_justieren" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC03_Lage_der_Patrone_bei_Übergabe_auf_den_Einpressdorn_ungenau" child="Copy_of_CM05_Spiel_der_Patronenfuehrung_korrigieren" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC06_Orientierung_der_Patrone_falsch" child="Copy_of_CM05_Spiel_der_Patronenfuehrung_korrigieren" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC05_Einpresskraft_zu_gering" child="Copy_of_CM07_Einpressparameter_prüfen_und_justieren" width="2" color="000080" />
+			<arcformat parent="Copy_of_FC08_Einstellparameter_der_Presse_falsch" child="Copy_of_CM07_Einpressparameter_prüfen_und_justieren" width="2" color="000080" />
+			<arcformat parent="Copy_of_FE03_FC07_Patronenbohrung_nicht_komplett_vollflaechig_befettet" child="Copy_of_CM08_Prozess_Fetten_prüfen_und_reparieren" width="2" color="000080" />
+		</genie>
+	</extensions>
+</smile>
