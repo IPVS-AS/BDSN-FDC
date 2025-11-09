@@ -8,7 +8,6 @@ from scipy.stats import bootstrap
 import re
 
 from bdsn_bayesian_network import BdsnBayesianNetwork
-from bdsn_pgmpy_bayesian_network import PgmpyBdsnBayesianNetwork
 
 import pysmile_license # pysmile license required in the same directory of this python script
 import pysmile
@@ -156,7 +155,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
 
     # Create Bayesian Network
     bdsn_bayesian_network = BdsnBayesianNetwork(logger=logger)
-    bdsn_pgmpy_bayesian_network = PgmpyBdsnBayesianNetwork(logger=logger)
 
     # Add the structural component nodes
     def addStructuralElementsToBayesianNetwork(cur_dict, i_x_level, i_y_level, x_pos_0, y_pos_0, node_width,
@@ -230,14 +228,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                                                               width=node_width,
                                                               height=node_height)
 
-        # pgmpy
-        bdsn_pgmpy_bayesian_network.add_node(name_failure_cause_node)
-        cur_cpd = bdsn_pgmpy_bayesian_network.defineCPD(variable=name_failure_cause_node,
-                                                        variable_card=2,
-                                                        values=[[0.2], [0.8]],
-                                                        state_names={name_failure_cause_node: ["True", "False"]})
-        bdsn_pgmpy_bayesian_network.add_cpds(cur_cpd)
-
     # Add all effect nodes of unique Failure Effects to the network
     x_pos_0 = 120
     y_pos_0 = 600
@@ -257,8 +247,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                                                               width=node_width,
                                                               height=node_height)
 
-        # pgmpy
-        bdsn_pgmpy_bayesian_network.add_node(name_failure_effect_node)
 
     # Add all nodes representing causal chains to the network
     x_pos_0 = 180
@@ -274,9 +262,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                                                               y_pos=y_pos_0,
                                                               width=node_width,
                                                               height=node_height)
-
-        # pgmpy
-        bdsn_pgmpy_bayesian_network.add_node(name_causal_chain_node)
 
     # Add all function nodes with failure modes as states
     def getStructuralChildNode(dict_bn_tree, key_to_search):
@@ -307,9 +292,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                                                               y_pos=y_pos_0,
                                                               width=node_width,
                                                               height=node_height_per_state * len(node_states))
-
-        # pgmpy
-        bdsn_pgmpy_bayesian_network.add_node(k)
 
         # arc to structural element
         child_node = getStructuralChildNode(dict_bn_tree, k)
@@ -342,10 +324,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                         bdsn_bayesian_network.addArc(handle_node_parent=bdsn_bayesian_network.getNodeHandle(k),
                                                      handle_node_child=bdsn_bayesian_network.getNodeHandle(rel_node))
 
-                    # pgmpy
-                    bdsn_pgmpy_bayesian_network.add_edge(u=k, v=rel_node)
-
-
 
         # arc from cause to function nodes
         relevant_cause_nodes = df_fmeca_data[df_fmeca_data['Function'] == k]['Fault_Root_Cause'].unique()
@@ -366,9 +344,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                         bdsn_bayesian_network.addArc(handle_node_parent=bdsn_bayesian_network.getNodeHandle(rel_node),
                                                      handle_node_child=bdsn_bayesian_network.getNodeHandle(k))
 
-                    # pgmpy
-                    bdsn_pgmpy_bayesian_network.add_edge(u=rel_node, v=k)
-
     # Add all correction measure nodes - Binary-State Nodes to represent multi-label predictions
     x_pos_0 = 40
     y_pos_0 = 10
@@ -385,9 +360,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                                                               width=node_width,
                                                               height=node_height)
 
-        # pgmpy
-        bdsn_pgmpy_bayesian_network.add_node(corrective_measure_name)
-
         list_root = df_fmeca_data[df_fmeca_data["Corrective_Measure"] == corrective_measure_name]['Fault_Root_Cause'].unique()
         list_root = np.unique(list_root)
         list_root = np.delete(list_root, np.argwhere(list_root == "None"))
@@ -403,9 +375,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
                 bdsn_bayesian_network.addArc(handle_node_parent=bdsn_bayesian_network.getNodeHandle(rel_causal_node),
                                              handle_node_child=id_created_node)
 
-            # pgmpy
-            bdsn_pgmpy_bayesian_network.add_edge(u=k, v=corrective_measure_name)
-
     # set states of deterministic node
     for i, set_element in enumerate(set_unique_functional_units):
         cur_cpt = bdsn_bayesian_network.getBayesianNetwork().get_node_definition(child_node)
@@ -416,9 +385,6 @@ def heuristic_parameter_identification(path : str, logger, verbose : int =0):
     # stop performance measurement
     t_end_creation_bn_structure = perf_counter_ns() * 10 ** -6
     delta_t_creation_bn_structure = t_end_creation_bn_structure - t_start_creation_bn_structure
-
-    # bdsn_pgmpy_bayesian_network.printDAG()
-    print(bdsn_pgmpy_bayesian_network.getBayesianNetwork().nodes())
 
     '''
     Heurisitic Parameter identification
