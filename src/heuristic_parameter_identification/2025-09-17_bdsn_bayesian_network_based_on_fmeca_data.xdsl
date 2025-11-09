@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This network was created in GeNIe Academic, which can be used for academic teaching and research purposes only -->
+<smile version="1.0" id="Unnamed" numsamples="10000" discsamples="10000">
+	<nodes>
+		<cpt id="FC01_Air_inclusions_in_the_grease">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<cpt id="FC02_Grease_plugs_clogged" target="true">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.0001 0.9999</probabilities>
+		</cpt>
+		<noisymax id="F01_Greasing" target="true">
+			<state id="FM01_Grease_incorrectly_dispensed" />
+			<state id="UNK" />
+			<state id="OK" />
+			<parents>FC01_Air_inclusions_in_the_grease FC02_Grease_plugs_clogged</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0.98 0.019 0.001 0 0 1 0.98 0.019 0.001 0 0 1 1e-07 1e-07 0.9999998</parameters>
+		</noisymax>
+		<deterministic id="FU01_Process_grease_housing_cartridge_bore">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>F01_Greasing</parents>
+			<resultingstates>NOK NOK OK</resultingstates>
+		</deterministic>
+		<deterministic id="SE03_Station01">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>FU01_Process_grease_housing_cartridge_bore</parents>
+			<resultingstates>OK NOK</resultingstates>
+		</deterministic>
+		<cpt id="FC03_Position_of_the_cartridge_on_the_pressing_in_plug_imprecise">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<cpt id="FC04_Insufficient_accuracy_of_the_axes">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>0.0005 0.9995000000000001</probabilities>
+		</cpt>
+		<noisymax id="F02_Feeding_cartridges">
+			<state id="FM02_Cartridge_is_damaged" />
+			<state id="UNK" />
+			<state id="OK" />
+			<parents>FC03_Position_of_the_cartridge_on_the_pressing_in_plug_imprecise FC04_Insufficient_accuracy_of_the_axes</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0.98 0.019 0.001 0 0 1 0.98 0.019 0.001 0 0 1 1e-07 1e-07 0.9999998</parameters>
+		</noisymax>
+		<cpt id="FC05_Press_in_force_too_low">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-06 0.999999</probabilities>
+		</cpt>
+		<cpt id="FC06_Incorrect_orientation_of_the_cartridge">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<cpt id="FC07_FE03_Cartridge_bore_not_completely_greased" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>F01_Greasing</parents>
+			<probabilities>1 0 0.2 0.8 0.002 0.998</probabilities>
+		</cpt>
+		<cpt id="FC08_Incorrect_press_settings">
+			<state id="True" />
+			<state id="False" />
+			<probabilities>1e-05 0.99999</probabilities>
+		</cpt>
+		<noisymax id="F03_Positioning_cartridges" target="true">
+			<state id="FM03_Not_pressed_in_position" />
+			<state id="FM04_Surface_of_cartridge_bore_damaged" />
+			<state id="UNK" />
+			<state id="OK" />
+			<parents>FC04_Insufficient_accuracy_of_the_axes FC05_Press_in_force_too_low FC06_Incorrect_orientation_of_the_cartridge FC07_FE03_Cartridge_bore_not_completely_greased FC08_Incorrect_press_settings</parents>
+			<strengths>0 1 0 1 0 1 0 1 0 1</strengths>
+			<parameters>0.5188235294117647 0.4611764705882353 0.019 0.001 0 0 0 1 0.98 0 0.019 0.001 0 0 0 1 0.98 0 0.019 0.001 0 0 0 1 0 0.98 0.019 0.001 0 0 0 1 0 0.98 0.019 0.001 0 0 0 1 1e-07 1e-07 1e-07 0.9999997</parameters>
+		</noisymax>
+		<deterministic id="FU02_Process_press_in_cartridges">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>F02_Feeding_cartridges F03_Positioning_cartridges</parents>
+			<resultingstates>NOK NOK NOK NOK NOK NOK NOK NOK NOK NOK NOK OK</resultingstates>
+		</deterministic>
+		<deterministic id="SE04_Station02">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>FU02_Process_press_in_cartridges</parents>
+			<resultingstates>OK NOK</resultingstates>
+		</deterministic>
+		<deterministic id="SE02_Cell02">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>SE03_Station01 SE04_Station02</parents>
+			<resultingstates>OK NOK NOK NOK</resultingstates>
+		</deterministic>
+		<deterministic id="SE01_Valve_Assembly_Line">
+			<state id="OK" />
+			<state id="NOK" />
+			<parents>SE02_Cell02</parents>
+			<resultingstates>OK NOK</resultingstates>
+		</deterministic>
+		<noisymax id="FE01_Valve_switching_times_not_reached">
+			<state id="True" />
+			<state id="False" />
+			<parents>F01_Greasing</parents>
+			<strengths>0 1 2</strengths>
+			<parameters>0.7142857142857143 0.2857142857142857 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="FE02_Increased_forces_pressing_in_cartridges">
+			<state id="True" />
+			<state id="False" />
+			<parents>F01_Greasing</parents>
+			<strengths>0 1 2</strengths>
+			<parameters>0.7142857142857143 0.2857142857142857 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="FE04_Internal_leakage">
+			<state id="True" />
+			<state id="False" />
+			<parents>F02_Feeding_cartridges</parents>
+			<strengths>0 1 2</strengths>
+			<parameters>0.7777777777777778 0.2222222222222222 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="FE05_Control_head_is_pressurized">
+			<state id="True" />
+			<state id="False" />
+			<parents>F02_Feeding_cartridges F03_Positioning_cartridges</parents>
+			<strengths>0 1 2 0 1 2 3</strengths>
+			<parameters>0.5555555555555556 0.4444444444444444 0.2 0.8 0 1 0.5555555555555556 0.4444444444444444 0 1 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="FE06_Control_head_not_controlled">
+			<state id="True" />
+			<state id="False" />
+			<parents>F02_Feeding_cartridges F03_Positioning_cartridges</parents>
+			<strengths>0 1 2 0 1 2 3</strengths>
+			<parameters>1 0 0.2 0.8 0 1 1 0 0 1 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<noisymax id="FE07_Failure_valve_no_switching_of_air" target="true">
+			<state id="True" />
+			<state id="False" />
+			<parents>F03_Positioning_cartridges</parents>
+			<strengths>0 1 2 3</strengths>
+			<parameters>0.8888888888888888 0.1111111111111112 1 0 0.2 0.8 0 1 0 1</parameters>
+		</noisymax>
+		<cpt id="CM01_Change_grease">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC01_Air_inclusions_in_the_grease</parents>
+			<probabilities>0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="CM02_Clean_grease_plugs">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC02_Grease_plugs_clogged</parents>
+			<probabilities>0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="CM03_Replace_grease_plugs">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC02_Grease_plugs_clogged</parents>
+			<probabilities>0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="CM04_Adjust_orientation_drop_shaft">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC03_Position_of_the_cartridge_on_the_pressing_in_plug_imprecise FC06_Incorrect_orientation_of_the_cartridge</parents>
+			<probabilities>0.95 0.05 0.95 0.05 0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="CM05_Correct_backlash_cartridge_feeder">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC03_Position_of_the_cartridge_on_the_pressing_in_plug_imprecise FC06_Incorrect_orientation_of_the_cartridge</parents>
+			<probabilities>0.95 0.05 0.95 0.05 0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="CM06_Check_and_adjust_axes">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC04_Insufficient_accuracy_of_the_axes</parents>
+			<probabilities>0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="CM07_Check_and_adjust_settings">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC05_Press_in_force_too_low FC08_Incorrect_press_settings</parents>
+			<probabilities>0.95 0.05 0.95 0.05 0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+		<cpt id="CM08_Check_and_repair_greasing_process">
+			<state id="True" />
+			<state id="False" />
+			<parents>FC07_FE03_Cartridge_bore_not_completely_greased</parents>
+			<probabilities>0.95 0.05 0.02 0.98</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 5.0.5310.0 ACADEMIC" name="Unnamed">
+			<node id="SE01_Valve_Assembly_Line">
+				<name>SE01_Valve_Assembly_Line</name>
+				<interior color="ca97ff" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>500 1200 600 1275</position>
+				<barchart active="true" />
+			</node>
+			<node id="SE02_Cell02">
+				<name>SE02_Cell02</name>
+				<interior color="ca97ff" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>500 1045 600 1120</position>
+				<barchart active="true" />
+			</node>
+			<node id="SE03_Station01">
+				<name>SE03_Station01</name>
+				<interior color="ca97ff" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>500 890 600 965</position>
+				<barchart active="true" />
+			</node>
+			<node id="FU01_Process_grease_housing_cartridge_bore">
+				<name>FU01_Process_grease_housing_cartridge_bore</name>
+				<interior color="8d8d8d" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>500 735 600 810</position>
+				<barchart active="true" />
+			</node>
+			<node id="SE04_Station02">
+				<name>SE04_Station02</name>
+				<interior color="ca97ff" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>780 890 880 965</position>
+				<barchart active="true" />
+			</node>
+			<node id="FU02_Process_press_in_cartridges">
+				<name>FU02_Process_press_in_cartridges</name>
+				<interior color="8d8d8d" />
+				<outline color="0000bb" />
+				<font color="000000" name="Arial" size="8" />
+				<position>780 735 880 810</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC01_Air_inclusions_in_the_grease">
+				<name>FC01_Air_inclusions_in_the_grease</name>
+				<interior color="ff8064" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>40 200 140 275</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC02_Grease_plugs_clogged">
+				<name>FC02_Grease_plugs_clogged</name>
+				<interior color="ff8064" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>180 200 280 275</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC03_Position_of_the_cartridge_on_the_pressing_in_plug_imprecise">
+				<name>FC03_Position_of_the_cartridge_on_the_pressing_in_plug_imprecise</name>
+				<interior color="ff8064" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>320 200 420 275</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC04_Insufficient_accuracy_of_the_axes">
+				<name>FC04_Insufficient_accuracy_of_the_axes</name>
+				<interior color="ff8064" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>460 200 560 275</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC05_Press_in_force_too_low">
+				<name>FC05_Press_in_force_too_low</name>
+				<interior color="ff8064" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>600 200 700 275</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC06_Incorrect_orientation_of_the_cartridge">
+				<name>FC06_Incorrect_orientation_of_the_cartridge</name>
+				<interior color="ff8064" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>740 200 840 275</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC08_Incorrect_press_settings">
+				<name>FC08_Incorrect_press_settings</name>
+				<interior color="ff8064" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1020 200 1120 275</position>
+				<barchart active="true" />
+			</node>
+			<node id="FE01_Valve_switching_times_not_reached">
+				<name>FE01_Valve_switching_times_not_reached</name>
+				<interior color="fbe340" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>120 600 220 675</position>
+				<barchart active="true" />
+			</node>
+			<node id="FE02_Increased_forces_pressing_in_cartridges">
+				<name>FE02_Increased_forces_pressing_in_cartridges</name>
+				<interior color="fbe340" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>340 600 440 675</position>
+				<barchart active="true" />
+			</node>
+			<node id="FE04_Internal_leakage">
+				<name>FE04_Internal_leakage</name>
+				<interior color="fbe340" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>780 600 880 675</position>
+				<barchart active="true" />
+			</node>
+			<node id="FE05_Control_head_is_pressurized">
+				<name>FE05_Control_head_is_pressurized</name>
+				<interior color="fbe340" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1000 600 1100 675</position>
+				<barchart active="true" />
+			</node>
+			<node id="FE06_Control_head_not_controlled">
+				<name>FE06_Control_head_not_controlled</name>
+				<interior color="fbe340" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1220 600 1320 675</position>
+				<barchart active="true" />
+			</node>
+			<node id="FE07_Failure_valve_no_switching_of_air">
+				<name>FE07_Failure_valve_no_switching_of_air</name>
+				<interior color="fbe340" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1440 600 1540 675</position>
+				<barchart active="true" />
+			</node>
+			<node id="FC07_FE03_Cartridge_bore_not_completely_greased">
+				<name>FC07_FE03_Cartridge_bore_not_completely_greased</name>
+				<interior color="fbe340" />
+				<outline color="ff8064" width="3" />
+				<font color="000000" name="Arial" size="8" />
+				<position>381 449 481 524</position>
+				<barchart active="true" width="128" height="64" />
+			</node>
+			<node id="F01_Greasing">
+				<name>F01_Greasing</name>
+				<interior color="99ccff" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>120 300 220 405</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="F02_Feeding_cartridges">
+				<name>F02_Feeding_cartridges</name>
+				<interior color="99ccff" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>340 300 440 405</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="F03_Positioning_cartridges">
+				<name>F03_Positioning_cartridges</name>
+				<interior color="99ccff" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>560 300 660 440</position>
+				<barchart active="true" width="128" height="90" />
+			</node>
+			<node id="CM01_Change_grease">
+				<name>CM01_Change_grease</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>40 10 140 85</position>
+				<barchart active="true" />
+			</node>
+			<node id="CM02_Clean_grease_plugs">
+				<name>CM02_Clean_grease_plugs</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>180 10 280 85</position>
+				<barchart active="true" />
+			</node>
+			<node id="CM03_Replace_grease_plugs">
+				<name>CM03_Replace_grease_plugs</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>320 10 420 85</position>
+				<barchart active="true" />
+			</node>
+			<node id="CM04_Adjust_orientation_drop_shaft">
+				<name>CM04_Adjust_orientation_drop_shaft</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>460 10 560 85</position>
+				<barchart active="true" />
+			</node>
+			<node id="CM05_Correct_backlash_cartridge_feeder">
+				<name>CM05_Correct_backlash_cartridge_feeder</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>600 10 700 85</position>
+				<barchart active="true" />
+			</node>
+			<node id="CM06_Check_and_adjust_axes">
+				<name>CM06_Check_and_adjust_axes</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>740 10 840 85</position>
+				<barchart active="true" />
+			</node>
+			<node id="CM07_Check_and_adjust_settings">
+				<name>CM07_Check_and_adjust_settings</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>880 10 980 85</position>
+				<barchart active="true" />
+			</node>
+			<node id="CM08_Check_and_repair_greasing_process">
+				<name>CM08_Check_and_repair_greasing_process</name>
+				<interior color="7dff7d" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1020 10 1120 85</position>
+				<barchart active="true" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
