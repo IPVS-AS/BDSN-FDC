@@ -193,3 +193,5 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 /src/heuristic_parameter_identification/pysmile_license.py
+
+/logs
