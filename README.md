@@ -31,6 +31,7 @@ BDSN-FDC/
 
 :file_folder: The directory ´src/heuristic_parameter_identification´ contains the source code of the Bayesian network generation and the heuristic parameter identification approach using FMECA data (including the computational performance analysis) and for the computational performance analysis of the inference step. 
 
+<!---
 [comment]: # (### Citation)
 [comment]: # (Please cite the following paper if you use this codebase:)
 [comment]: # (```
@@ -49,12 +50,12 @@ BDSN-FDC/
 
 [comment]: # (- **Training**: asdf
 - **Scalability**: asdf)
-
+-->
 
 ## Penalized Expectation Maximization Algorithm with Fixed Parameters (PEMFP)
 Content will be added after publication of the corresponding paper.
 
-[comment]: # (### Citation)
+<!---[comment]: # (### Citation)
 [comment]: # (Please cite the following paper if you use this codebase:)
 [comment]: # (```
 @article{key,
@@ -66,11 +67,12 @@ Content will be added after publication of the corresponding paper.
   primaryclass = {},
   url          = {}
 }
-```)
+```)-->
 
 ## Application BDSN-FDC
 Content will be added after publication of the corresponding paper.
 
+<!---
 [comment]: # (### Citation)
 [comment]: # (Please cite the following paper if you use this codebase:)
 [comment]: # (```
@@ -83,4 +85,4 @@ Content will be added after publication of the corresponding paper.
   primaryclass = {},
   url          = {}
 }
-```)
+```)-->
