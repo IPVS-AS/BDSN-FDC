@@ -1,6 +1,5 @@
 # BDSN-FDC
-Repository for the Bayesian Decision Support Network for Fault Diagnosis and Correction (BDSN-FDC).
-An Ontology-Driven Bayesian Network Approach to Fault Diagnosis and Correction in Manufacturing
+Repository for the Bayesian Decision Support Network for Fault Diagnosis and Correction (BDSN-FDC). The BDSN-FDC includes an ontology-driven Bayesian network approach to fault diagnosis and correction in manufacturing
 
 ## Repository Overview
 
@@ -46,10 +45,10 @@ BDSN-FDC/
 }
 ```)
 
-### Key Findings
+[comment]: # (### Key Findings)
 
-- **Training Efficiency**: asdfasdf
-- **Scaling Behavior**: aasdf
+[comment]: # (- **Training**: asdf
+- **Scalability**: asdf)
 
 
 ## Penalized Expectation Maximization Algorithm with Fixed Parameters (PEMFP)
